@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
@@ -99,7 +100,7 @@ export default function Hero() {
               src="3.png
               " 
               alt="Profile Picture"
-              className="w-64 h-72 md:w-40 md:h-40 lg:w-60 border-2 lg:h-60 rounded-full border-primary/30 object-cover"
+              className="w-40 h-44 md:w-40 md:h-40 lg:w-60 border-2 lg:h-60 mt-12 rounded-full border-primary/30 object-cover"
             />
           </motion.div>
 
@@ -135,7 +136,7 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 1 }}
           className="mb-12 md:mb-16 relative"
         >
-          <p className="terminal-line text-base md:text-lg lg:text-xl font-mono">
+          <p className="terminal-line text-base md:text-lg lg:text-xl font-mono -mt-12">
             {typedText}
             <span className="animate-pulse">█</span>
           </p>
@@ -155,7 +156,7 @@ export default function Hero() {
           {/* View Resume Button */}
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <a href="https://zubairmirza2970.hackerresume.io/8a22ab72-4e71-4071-8d42-c53d354dc32d" target="_blank" rel="noopener noreferrer">
-              <button className="btn-glass group relative overflow-hidden top-10 md:top-14 text-sm md:text-base px-6 md:px-8 py-3 md:py-4 mb-7">
+              <button className="btn-glass group relative overflow-hidden    -top-8 md:top-14 text-sm md:text-base px-6 md:px-8 py-3 md:py-4 mb-7">
                 <span className="relative z-10 flex items-center gap-2">
                   <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -169,7 +170,7 @@ export default function Hero() {
           {/* View Projects Button */}
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <a href="#projects">
-              <button className="btn-glass group relative overflow-hidden top-10 md:top-14 text-sm md:text-base px-6 md:px-8 py-3 md:py-4 mb-7 border border-primary rounded-lg">
+              <button className="btn-glass group relative overflow-hidden -top-16 md:top-14 text-sm md:text-base px-6 md:px-8 py-3 md:py-4 mb-7 border border-primary rounded-lg">
 
                 <span className="flex items-center gap-2">
                   <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
