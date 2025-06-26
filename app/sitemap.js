@@ -1,28 +1,50 @@
-export default function sitemap() {
-  return [
+export async function GET() {
+  const urls = [
     {
-      url: 'https://zubairverse.vercel.app',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
+      loc: 'https://zubairverse.vercel.app/',
+      lastmod: new Date().toISOString(),
+      changefreq: 'weekly',
+      priority: 1.0,
     },
     {
-      url: 'https://zubairverse.vercel.app/#about',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
+      loc: 'https://zubairverse.vercel.app/#about',
+      lastmod: new Date().toISOString(),
+      changefreq: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://zubairverse.vercel.app/#projects',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
+      loc: 'https://zubairverse.vercel.app/#projects',
+      lastmod: new Date().toISOString(),
+      changefreq: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://zubairverse.vercel.app/#blog',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
+      loc: 'https://zubairverse.vercel.app/#blog',
+      lastmod: new Date().toISOString(),
+      changefreq: 'weekly',
       priority: 0.7,
     },
-  ]
+  ];
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${urls
+    .map(
+      (url) => `
+    <url>
+      <loc>${url.loc}</loc>
+      <lastmod>${url.lastmod}</lastmod>
+      <changefreq>${url.changefreq}</changefreq>
+      <priority>${url.priority}</priority>
+    </url>
+  `
+    )
+    .join('')}
+</urlset>`;
+
+  return new Response(xml, {
+    headers: {
+      'Content-Type': 'application/xml',
+    },
+  });
 }
