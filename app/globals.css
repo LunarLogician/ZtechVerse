@@ -412,6 +412,44 @@ a:focus-visible {
     width: 100%;
   }
 }
+.perspective {
+  perspective: 1200px;
+}
+/* Add this if not using Tailwind 3D utilities */
+.flip-card {
+  perspective: 1000px;
+}
+.flip-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+}
+.flip-card:hover .flip-inner,
+.flip-card.flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+.flip-front,
+.flip-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+
+.transform-style {
+  transform-style: preserve-3d;
+  transition: transform 0.7s;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
 
 /* Improved Section Spacing */
 @media (max-width: 768px) {

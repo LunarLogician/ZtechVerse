@@ -3,6 +3,74 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react'
 
+const ProjectCard = ({ project }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const handleToggleFlip = () => {
+    if (isMobile) setIsFlipped((prev) => !prev);
+  };
+
+  return (
+    <div
+      className="w-full h-[320px] perspective cursor-pointer"
+      onClick={handleToggleFlip}
+    >
+      <div className={`relative w-full h-full duration-700 transform-style preserve-3d ${isFlipped ? "rotate-y-180" : ""}`}>
+        {/* Front Side */}
+        <div className="absolute w-full h-full backface-hidden bg-[var(--secondary)] border border-primary/20 rounded-2xl p-6 shadow-md backdrop-blur-md flex flex-col justify-center items-center">
+          <div className="text-4xl mb-3 text-primary">{project.icon}</div>
+          <h3 className="text-xl font-bold text-primary mb-2 text-center">
+            {project.title}
+          </h3>
+          <p className="text-sm text-gray-300 text-center text-primary">{project.description}</p>
+        </div>
+
+        {/* Back Side */}
+        <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-[var(--secondary)] border border-primary/20 rounded-2xl p-6 shadow-md backdrop-blur-md flex flex-col justify-between">
+          <div>
+            <h4 className="text-lg font-semibold text-primary mb-2">Stack:</h4>
+            <div className="flex flex-wrap gap-3">``
+              {project.tech.map((tech) => (
+                <span key={tech} className="bg-primary/20 text-primary text-xs px-2 py-1 rounded-full">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="mt-4 flex gap-2">
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-glass text-xs px-3 py-1.5"
+            >
+              🔗 Live
+            </a>
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-glass text-xs px-3 py-1.5"
+            >
+              📂 GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const AboutSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -378,37 +446,38 @@ const certifications = [
       </div>
 
       {/* Experience Section */}
-      <div id="experience" className="max-w-7xl mx-auto relative z-10 mb-24 mt-16 md:mt-24 lg:mt-32 px-4 md:px-6 py-12">
-        <div className="text-center mb-8 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-primary mb-4 md:mb-6 glow-text">
+      <div id="experience" className="max-w-4xl mx-auto px-4 md:px-6 py-12">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-primary mb-4 glow-text">
             Experience
           </h2>
-          <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6 md:mb-8"></div>
+          <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6"></div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 pr-8">
+
+        {/* Vertical Timeline */}
+        <div className="relative border-l-2 border-primary/50 pl-8 ml-2">
           {experience.map((exp, index) => (
-            <div 
-              key={exp.id}
-              className="bg-[var(--secondary)] rounded-2xl p-4 md:p-6 border border-primary/20 backdrop-blur-md hover:border-primary/40 transition-all duration-300 group cursor-pointer"
-              style={{
-                animationDelay: `${index * 0.1}s`
-              }}
-            >
-              <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-                <div className="text-4xl">{exp.icon}</div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-primary group-hover:glow-text transition-all duration-300">
-                    {exp.title}
-                  </h3>
-                  <p className="text-xl text-gray-300">{exp.company}</p>
-                  <p className="text-gray-400">{exp.period} • {exp.location}</p>
+            <div key={exp.id} className="mb-12 relative">
+              {/* Dot */}
+              <div className="absolute -left-[1.05rem] top-2 w-5 h-5 rounded-full bg-primary border-4 border-[var(--secondary)] shadow-lg"></div>
+
+              {/* Job Title (moved near the line) */}
+              <h3 className="text-xl md:text-2xl font-bold text-primary mb-1 ml-3 pt-3">{exp.title}</h3>
+
+              {/* Experience Content */}
+              <div className="pl-1">
+                <div className="flex  flex-col items-center gap-2 mb-1">
+                  <div className="text-xl text-primary">{exp.icon}</div>
+                  <p className="text-lg text-primary">{exp.company}</p>
                 </div>
+                <p className="text-sm text-primary mb-2">{exp.period} • {exp.location}</p>
+                <p className="text-gray-300 leading-relaxed text-primary">{exp.description}</p>
               </div>
-              <p className="text-gray-300 leading-relaxed text-primary">{exp.description}</p>
             </div>
           ))}
         </div>
       </div>
+
       {/* Projects Section */}
       <div id="projects" className="max-w-7xl mx-auto relative z-10 mb-24 mt-16 md:mt-24 lg:mt-32 px-4 md:px-6">
         <div className="text-center mb-8 md:mb-16 ">
@@ -417,51 +486,14 @@ const certifications = [
           </h2>
           <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6 md:mb-8"></div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-3 lg:grid-cols-3 gap-4 md:gap-8 ">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className="bg-[var(--secondary)] rounded-2xl p-4 md:p-6 border border-primary/20 backdrop-blur-md hover:border-primary/40 transition-all duration-300 group cursor-pointer "
-              onMouseEnter={() => setHoveredCard(project.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-              style={{
-                animationDelay: `${index * 0.1}s`
-              }}
-            >
-              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300 `}></div>
-              <div className="relative z-10">
-                <div className="text-3xl md:text-4xl mb-3 md:mb-4">{project.icon}</div>
-                <h3 className="text-lg md:text-xl font-bold text-primary mb-2 md:mb-3 group-hover:glow-text transition-all duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 line-clamp-3 text-primary">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-3 md:mb-4">
-                  {project.tech.slice(0, 3).map((tech) => (
-                    <span key={tech} className="px-2 md:px-3 py-1 bg-primary/20 text-primary rounded-full text-xs md:text-sm sm:mt-7">
-                      {tech}
-                    </span>
-                  ))}
-                  {project.tech.length > 3 && (
-                    <span className="px-2 md:px-3 py-1 bg-gray-600 text-gray-300 rounded-full text-xs md:text-sm sm:mt-7">
-                      +{project.tech.length - 3}
-                    </span>
-                  )}
-                </div>
-                <div className="flex gap-2 md:gap-3 mt-11 mb-7">
-                  <a href={project.link} className="btn-glass text-xs md:text-sm px-3 md:px-4 py-1.5 md:py-2">
-                    <span className="flex items-center gap-1 md:gap-2">
-                      🔗 Live Demo
-                    </span>
-                  </a>
-                  <a href={project.github} className="btn-glass text-xs md:text-sm px-3 md:px-4 py-1.5 md:py-2">
-                    <span className="flex items-center gap-1 md:gap-2">
-                      📱 GitHub
-                    </span>
-                  </a>
-                </div>
+        <div className="overflow-x-auto scrollbar-hide -mx-2 px-5">
+          <div className="flex gap-13 md:gap-8 pb-2">
+            {projects.map((project) => (
+              <div key={project.id} className="min-w-[260px] max-w-[320px] w-full flex-shrink-0">
+                <ProjectCard project={project} />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
@@ -473,78 +505,79 @@ const certifications = [
           </h2>
           <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6 md:mb-8"></div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-          {certifications.map((cert, index) => (
-            <div
-              key={cert.id}
-              className="bg-[var(--secondary)] rounded-2xl p-4 md:p-6 border border-primary/20 backdrop-blur-md hover:border-primary/40 transition-all duration-300 group"
-              style={{
-                animationDelay: `${index * 0.1}s`
-              }}
-            >
-              <div className="text-center">
-                <div className="text-4xl md:text-5xl mb-3 md:mb-4">{cert.badge}</div>
-                <h3 className="text-lg md:text-xl font-bold text-primary mb-2 group-hover:glow-text transition-all duration-300">
-                  {cert.title}
-                </h3>
-                <p className="text-sm md:text-base text-gray-300 mb-2">{cert.issuer}</p>
-                <p className="text-xs md:text-sm text-gray-400 mb-3 md:mb-4 text-primary">{cert.description}</p>
-                <div className="flex justify-between items-center">
-                  <span className="px-2 md:px-3 py-1 bg-primary/20 text-primary rounded-full text-xs md:text-sm">
-                    {cert.level}
-                  </span>
-                  <span className="text-xs md:text-sm text-gray-400">{cert.date}</span>
+        <div className="overflow-x-auto scrollbar-hide -mx-2 px-2">
+          <div className="grid grid-flow-col grid-cols-none gap-3 md:gap-6 pb-2 auto-cols-[80%] sm:auto-cols-[45%] md:auto-cols-[32%] lg:auto-cols-[24%]" style={{scrollSnapType: 'x mandatory'}}>
+            {certifications.map((cert, index) => (
+              <div
+                key={cert.id}
+                className="w-full h-full bg-[var(--secondary)] rounded-2xl p-3 sm:p-4 md:p-6 border border-primary/20 backdrop-blur-md hover:border-primary/40 transition-all duration-300 group overflow-hidden" style={{scrollSnapAlign: 'start'}}
+              >
+                <div className="text-center flex flex-col h-72">
+                  <div className="text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3 md:mb-4">{cert.badge}</div>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-primary mb-1 sm:mb-2 group-hover:glow-text transition-all duration-300 break-words whitespace-normal overflow-hidden">
+                    {cert.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-300 mb-1 sm:mb-2 break-words whitespace-normal overflow-hidden text-primary ">{cert.issuer}</p>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-400 mb-2 sm:mb-3 md:mb-4 text-primary break-words whitespace-normal overflow-hidden">
+                    {cert.description}
+                  </p>
+                  <div className="flex justify-between items-center mt-auto gap-1">
+                    <span className="px-2 sm:px-3 py-0.5 sm:py-1 bg-primary/20 text-primary rounded-full text-xs sm:text-sm">
+                      {cert.level}
+                    </span>
+                    <span className="text-xs sm:text-sm text-gray-400 text-primary ">{cert.date}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Skills Section */}
-      <div id="skills" className="max-w-7xl mx-auto relative z-10 mb-24 mt-16 md:mt-24 lg:mt-32">
-        <div className="text-center mb-8 md:mb-16 ">
+    
+
+  {/* Skills Section */}
+  <div className="text-center mb-8 md:mb-16 ">
           <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-primary mb-4 md:mb-6 glow-text ">
             Skills
           </h2>
           <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6 md:mb-8"></div>
         </div>
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
-          {skills.map((skill, index) => (
-            <div
-              key={skill}
-              className="px-4 md:px-6 py-2 md:py-3 bg-[var(--secondary)] border border-primary/20 rounded-full text-sm md:text-base text-primary hover:border-primary/60 hover:glow-text transition-all duration-300 cursor-pointer"
-              style={{
-                animationDelay: `${index * 0.05}s`
-              }}
-            >
-              {skill}
-            </div>
-          ))}
-        </div>
-        {/* Achievement Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-8 md:mt-12">
-          <div className="bg-[var(--secondary)] rounded-2xl p-4 md:p-6 border border-primary/20 backdrop-blur-md">
-            <h4 className="text-lg md:text-xl font-bold text-primary mb-3 md:mb-4">🏆 Achievements</h4>
-            <ul className="space-y-2 text-sm md:text-base text-gray-300 text-primary">
-              <li>• 4th Place Competitive Programming Contest, Bahria University</li>
-              <li>• Microsoft Learning Student Ambassador</li>
-              <li>• Google Developer Group (GDG) On-Campus Member</li>
-              <li>• CompPEC NUST 2024 Participation</li>
-            </ul>
-          </div>
-          <div className="bg-[var(--secondary)] rounded-2xl p-4 md:p-6 border border-primary/20 backdrop-blur-md">
-            <h4 className="text-lg md:text-xl font-bold text-primary mb-3 md:mb-4">🎯 Interests</h4>
-            <ul className="space-y-2 text-sm md:text-base text-gray-300 text-primary">
-              <li>• Blockchain & Web3 Development</li>
-              <li>• AI/ML Integration</li>
-              <li>• Competitive Programming</li>
-              <li>• Open Source Contribution</li>
-            </ul>
-          </div>
-        </div>
-      </div>
 
+  <div
+  id="skills"
+  className="max-w-5xl mx-auto bg-[var(--secondary)] border border-primary/30 text-[var(--primary)] font-mono rounded-xl shadow-xl px-6 py-8 md:py-12 mt-20 backdrop-blur-md"
+>
+  {/* Terminal header */}
+  <div className="mb-6 text-lg md:text-xl text-primary glow-text">
+    zubair@portfolio:~$ <span className="text-accent">show skills</span>
+  </div>
+
+  {/* Skill lines */}
+  <div className="space-y-2 text-sm md:text-base pl-4 text-primary/90">
+    {skills.map((skill) => (
+      <div key={skill}>
+        <span className="text-primary">&gt;</span> {skill.padEnd(16, " ")} <span className="text-green-400">✔</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-2 h-2 bg-primary rounded-full animate-pulse opacity-60"></div>
       <div className="absolute top-1/3 right-20 w-1 h-1 bg-primary rounded-full animate-ping opacity-40"></div>
