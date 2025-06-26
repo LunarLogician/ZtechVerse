@@ -82,7 +82,28 @@ export default function Hero() {
           }}
           className="mb-8 md:mb-12"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-primary drop-shadow-lg relative -top-20 md:-top-30">
+          {/* Circular Image Placeholder */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 1,
+              type: "spring",
+              stiffness: 120,
+              damping: 12,
+              delay: 0.2
+            }}
+            className="mb-6 md:mb-8 flex justify-center"
+          >
+            <img 
+              src="3.png
+              " 
+              alt="Profile Picture"
+              className="w-64 h-72 md:w-40 md:h-40 lg:w-60 border-2 lg:h-60 rounded-full border-primary/30 object-cover"
+            />
+          </motion.div>
+
+          <h1 className="text-[50px] sm:text-5xl md:text-7xl lg:text-8xl font-bold text-primary drop-shadow-lg relative -top-20 md:-top-30 pt-24 -mb-4">
             <span className="relative inline-block">
               ZubairVerse
               <motion.div
@@ -93,6 +114,7 @@ export default function Hero() {
             </span>
           </h1>
         </motion.div>
+        
 
         {/* One-liner tagline */}
         <motion.div
@@ -165,14 +187,14 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.5, duration: 1 }}
-          className="absolute bottom-20 md:bottom-32 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-20 md:bottom-32 left-1/2 transform -translate-x-1/2 "
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center text-primary/60"
+            className="flex flex-col items-center text-primary/60 lg:-mt-28"
           >
-            <span className="text-xs md:text-sm mb-2 font-mono -top-8 md:-top-12">scroll down</span>
+            <span className="text-xs md:text-sm mb-2 font-mono -top-8 md:-top-12 lg:-top-10 ">scroll down</span>
             <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
