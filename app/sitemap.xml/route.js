@@ -26,21 +26,11 @@ export async function GET() {
     },
   ];
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${urls
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  ${urls
     .map(
-      (url) => `
-    <url>
-      <loc>${url.loc}</loc>
-      <lastmod>${url.lastmod}</lastmod>
-      <changefreq>${url.changefreq}</changefreq>
-      <priority>${url.priority}</priority>
-    </url>
-  `
+      (url) => `\n    <url>\n      <loc>${url.loc}</loc>\n      <lastmod>${url.lastmod}</lastmod>\n      <changefreq>${url.changefreq}</changefreq>\n      <priority>${url.priority}</priority>\n    </url>\n  `
     )
-    .join('')}
-</urlset>`;
+    .join('')}\n</urlset>`;
 
   return new Response(xml, {
     headers: {
