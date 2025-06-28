@@ -97,8 +97,7 @@ export default function Hero() {
             className="mb-6 md:mb-8 flex justify-center"
           >
             <img 
-              src="3.png
-              " 
+              src="3.png" 
               alt="Profile Picture"
               className="w-40 h-44 md:w-40 md:h-40 lg:w-60 border-2 lg:h-60 mt-12 rounded-full border-primary/30 object-cover"
             />

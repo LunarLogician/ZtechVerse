@@ -110,12 +110,12 @@ const FreelancePage = () => {
       <div className="max-w-6xl mx-auto relative z-10 mb-16">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-primary mb-6 glow-text">
-            Hire Me for Your Next Project
+            Book a Free Consultation
           </h1>
           <div className="w-24 md:w-32 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8"></div>
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed text-primary">
-            Looking for a reliable Full Stack Developer? I'm available on Upwork and Fiverr, 
-            ready to bring your ideas to life with cutting-edge web technologies.
+            Ready to discuss your next project? Book a free consultation to explore how we can 
+            bring your ideas to life with cutting-edge web technologies. No commitment required!
           </p>
         </div>
 
@@ -161,7 +161,7 @@ const FreelancePage = () => {
                 </div>
 
                 <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-primary mb-3 text-primary">Why Choose Me:</h4>
+                  <h4 className="text-lg font-semibold text-primary mb-3 text-primary">Why Book With Me:</h4>
                   <ul className="space-y-2">
                     {platform.features.map((feature, idx) => (
                       <li key={idx} className="text-gray-300 text-sm text-primary">{feature}</li>
@@ -177,7 +177,7 @@ const FreelancePage = () => {
                 >
                   <span className="flex items-center justify-center gap-2">
                     <ExternalLink size={18} />
-                    View Profile on {platform.name}
+                    Book Consultation on {platform.name}
                   </span>
                 </a>
               </div>
