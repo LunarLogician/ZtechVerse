@@ -20,7 +20,7 @@ const FreelancePage = () => {
       features: [
         "⭐ Top Rated Plus Badge",
         "⭐ 100% Job Success Score", 
-        "⭐ Fast Response Time",
+        "⭐ Free Initial Consultation",
         "⭐ Long-term Client Relationships"
       ]
     },
@@ -37,8 +37,8 @@ const FreelancePage = () => {
       features: [
         "⭐ Level 1 Seller",
         "⭐ 5-Star Average Rating",
-        "⭐ Quick Delivery",
-        "⭐ Unlimited Revisions"
+        "⭐ Free Project Assessment",
+        "⭐ Flexible Meeting Times"
       ]
     }
   ];
@@ -256,11 +256,11 @@ const FreelancePage = () => {
       <div className="max-w-4xl mx-auto relative z-10 text-center mt-20 pt-20">
         <div className="bg-[var(--secondary)] rounded-2xl p-8 md:p-12 border border-primary/20 backdrop-blur-md">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 glow-text">
-            Ready to Start Your Project?
+            Ready to Book Your Free Consultation?
           </h2>
           <p className="text-lg text-gray-300 mb-8 leading-relaxed text-primary">
-            Let's discuss your requirements and bring your vision to life. 
-            Contact me on your preferred platform or send me a direct message.
+            Let's schedule a meeting to discuss your project requirements and explore solutions. 
+            Get expert advice and a project roadmap absolutely free - no strings attached!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -270,7 +270,7 @@ const FreelancePage = () => {
               className="btn-glass px-8 py-3"
             >
               <span className="flex items-center justify-center gap-2">
-                💼 Contact on Upwork
+                💼 Book Meeting on Upwork
               </span>
             </a>
             <a
@@ -280,7 +280,7 @@ const FreelancePage = () => {
               className="btn-glass px-8 py-3"
             >
               <span className="flex items-center justify-center gap-2">
-                🎯 Message on Fiverr
+                🎯 Schedule Call on Fiverr
               </span>
             </a>
             <a
@@ -288,7 +288,7 @@ const FreelancePage = () => {
               className="btn-glass px-8 py-3"
             >
               <span className="flex items-center justify-center gap-2">
-                📧 Direct Email
+                📧 Get Free Consultation
               </span>
             </a>
           </div>

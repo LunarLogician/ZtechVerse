@@ -6,7 +6,7 @@ import { Menu, X } from 'lucide-react';
 
 const NAV_LINKS = [
   { label: 'Home', id: 'home', type: 'scroll' },
-  { label: 'Hire Me', id: 'freelance', type: 'page' },
+  { label: 'Book Consultation', id: 'freelance', type: 'page' },
   { label: 'About', id: 'about', type: 'scroll' },
   { label: 'Experience', id: 'experience', type: 'scroll' },
   { label: 'Projects', id: 'projects', type: 'scroll' },
