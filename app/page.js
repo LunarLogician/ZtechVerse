@@ -57,9 +57,10 @@ export default function Home() {
       {/* Page Content */}
       <main>
         <Hero />
-        <Blog />
         <AboutSection />
         {/* Other sections */}
+        <Blog />
+
       </main>
 
       {/* Chatbot */}

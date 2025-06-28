@@ -141,7 +141,9 @@ export default function RootLayout({ children }) {
               "sameAs": [
                 "https://github.com/LunarLogician",
                 "https://www.linkedin.com/in/muhammad-zubair-2130b2244/",
-                "https://x.com/thisiszubi"
+                "https://x.com/thisiszubi",
+                "https://www.upwork.com/freelancers/zubairm35",
+                "https://www.fiverr.com/s/GzrYaEa"
               ],
               "knowsAbout": [
                 "React.js",

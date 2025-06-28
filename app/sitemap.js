@@ -7,6 +7,12 @@ export default function sitemap() {
       priority: 1,
     },
     {
+      url: 'https://zverse.vercel.app/freelance',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
       url: 'https://zverse.vercel.app/#about',
       lastModified: new Date(),
       changeFrequency: 'monthly',

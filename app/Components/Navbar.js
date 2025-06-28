@@ -5,23 +5,37 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const NAV_LINKS = [
-  { label: 'Blog', id: 'blog' },
-  { label: 'About', id: 'about' },
-  { label: 'Experience', id: 'experience' },
-  { label: 'Projects', id: 'projects' },
-  { label: 'Certifications', id: 'certifications' },
-  { label: 'Skills', id: 'skills' },
-  { label: 'FAQ', id: 'faq' },
+  { label: 'Home', id: 'home', type: 'scroll' },
+  { label: 'Hire Me', id: 'freelance', type: 'page' },
+  { label: 'About', id: 'about', type: 'scroll' },
+  { label: 'Experience', id: 'experience', type: 'scroll' },
+  { label: 'Projects', id: 'projects', type: 'scroll' },
+  { label: 'Certifications', id: 'certifications', type: 'scroll' },
+  { label: 'Skills', id: 'skills', type: 'scroll' },
+  { label: 'FAQ', id: 'faq', type: 'scroll' },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleNavClick = (id) => {
+  const handleNavClick = (link) => {
     setMenuOpen(false);
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+    if (link.type === 'page') {
+      // Navigate to a different page
+      if (link.id === 'freelance') {
+        window.location.href = '/freelance';
+      }
+    } else if (link.type === 'scroll') {
+      // Scroll to section on current page
+      if (link.id === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const el = document.getElementById(link.id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     }
   };
 
@@ -35,7 +49,7 @@ export default function Navbar() {
             <button
               key={link.id}
               className="text-primary hover:text-primary/80 text-sm px-2 py-1 hover:scale-105 transition-all duration-200 bg-transparent border-none outline-none"
-              onClick={() => handleNavClick(link.id)}
+              onClick={() => handleNavClick(link)}
             >
               {link.label}
             </button>
@@ -60,7 +74,7 @@ export default function Navbar() {
               <button
                 key={link.id}
                 className="text-primary hover:text-primary/80 text-base py-3 px-4 w-full text-left mb-1 bg-transparent border-none outline-none transition-all duration-200"
-                onClick={() => handleNavClick(link.id)}
+                onClick={() => handleNavClick(link)}
               >
                 {link.label}
               </button>

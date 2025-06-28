@@ -459,7 +459,7 @@ const certifications = [
           {experience.map((exp, index) => (
             <div key={exp.id} className="mb-12 relative">
               {/* Dot */}
-              <div className="absolute -left-[1.05rem] top-2 w-5 h-5 rounded-full bg-primary border-4 border-[var(--secondary)] shadow-lg"></div>
+              <div className="absolute -left-[1.05rem] top-2 w-5 h-5 rounded-full bg-gray-800 border-4 border-[var(--secondary)] shadow-lg"></div>
 
               {/* Job Title (moved near the line) */}
               <h3 className="text-xl md:text-2xl font-bold text-primary mb-1 ml-3 pt-3">{exp.title}</h3>
