@@ -207,12 +207,12 @@ const certifications = [
   "id": 14,
   "title": "Certified Ethical Hacker (CEH, CHFI)",
   "issuer": "National Vocational & Technical Training Commission (NAVTTC), Government of Pakistan",
-  "description": "Successfully completed Certified Ethical Hacker (CEH) and Computer Hacking Forensic Investigator (CHFI) certification through Gateway Education Systems.",
+  "description": "Successfully completed Certified Ethical Hacker (CEH) ",
   "date": "July 24, 2025",
   "badge": "🛡️",
   "level": "Certification"
-}
-,
+},
+
   {
     id: 2,
     title: "Ethical Hacking Fundamentals",
