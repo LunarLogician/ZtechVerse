@@ -310,7 +310,18 @@ const certifications = [
     date: "8th-9th June 2024",
     badge: "📜",
     level: "Organizer"
-  }
+  },
+  {
+  "id": 14,
+  "title": "Certified Ethical Hacker (CEH, CHFI)",
+  "issuer": "National Vocational & Technical Training Commission (NAVTTC), Government of Pakistan",
+  "description": "Successfully completed Certified Ethical Hacker (CEH) and Computer Hacking Forensic Investigator (CHFI) certification through Gateway Education Systems.",
+  "date": "July 24, 2025",
+  "badge": "🛡️",
+  "level": "Certification"
+}
+
+  
 ];
 
   const skills = [
