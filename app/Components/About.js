@@ -328,7 +328,7 @@ const certifications = [
   const skills = [
     "JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express.js",
     "Python", "C++", "HTML", "CSS", "Tailwind CSS", "MongoDB", "PostgreSQL", 
-    "SQL", "Firebase", "JWT", "Docker", "Git", "GitHub Actions", "Postman, Micro-services , Spring Boot , Kafka , Redis , Java"
+    "SQL", "Firebase", "JWT", "Docker", "Git", "GitHub Actions", "Postman", "Micro-services", "Spring Boot", "Kafka", "Redis", "Java"
   ];
 
   const experience = [
@@ -371,7 +371,7 @@ const certifications = [
     {
       id: 5,
       title: "Backend Developer",
-      company: "VaultsPay |- Dubai (UAE)",
+      company: "VaultsPay - Dubai (UAE)",
       period: "June 2025 –  Aug 2025",
       location: "Islamabad, Pakistan",
       description: "Developed and maintained fintech backend services using Spring Boot and Java microservices architecture. Gained extensive experience in financial technology operations, implementing Kafka for event streaming, Redis for caching, and advanced deployment strategies. Learned how complex backend systems work in a fintech company environment, including payment processing, transaction handling, and secure financial data management.",
